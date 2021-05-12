@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './App.css';
 import Customer from './components/Customer';
+import CustomerAdd from "./components/CustomerAdd";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -9,7 +10,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { withStyles } from "@material-ui/core/styles";
-
 const styles = theme => ({
   root: {
     width: "100%",
@@ -21,6 +21,10 @@ const styles = theme => ({
   },
   progress: {
     margin: theme.spacing.unit * 2
+  },
+  img: {
+    width: 64,
+    height: 64
   }
 })
 
@@ -81,6 +85,7 @@ class App extends Component {
             </TableBody>
           </Table>
         </Paper>
+        <CustomerAdd />
       </div>
     );
   }
