@@ -9,11 +9,12 @@
   "scripts": {
     "server": "nodemon --exec babel-node server.js",
     "client": "cd client && yarn start",
-    "dev": "concurrently --kill-other-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
@@ -21,6 +22,7 @@
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.15",
     "concurrently": "^6.0.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
   }
 }

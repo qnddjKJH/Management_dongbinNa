@@ -34,7 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     // 0.02 초 마다 한번씩 progress 실행
-    this.timer = setInterval(this.progress, 20);
+    this.timer = setInterval(this.progress, 1000);
     // callApi 실행
     this.callApi()
       .then(res => this.setState({ customers: res }))
@@ -49,7 +49,7 @@ class App extends Component {
 
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+    this.setState({ completed: completed >= 100 ? 0 : completed + 12.5});
   }
 
   render() {

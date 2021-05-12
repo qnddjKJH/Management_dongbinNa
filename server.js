@@ -1,5 +1,7 @@
+import fs from "fs";
 import express from "express";
 import morgan from "morgan";
+import mysql from "mysql";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -8,30 +10,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+const data = fs.readFileSync("./database.json");
+const conf = JSON.parse(data);
+
+const connection = mysql.createConnection({
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  port: conf.port,
+  database: conf.database
+})
+connection.connect();
+
 app.get("/api/customers", (req, res) => {
-    res.send([{
-        "id": 1,
-        "image": "https://placeimg.com/64/64/1",
-        "name": "홍길동",
-        "birthday": "950406",
-        "gender": "남자",
-        "job": "학생"
-      },{
-        "id": 2,
-        "image": "https://placeimg.com/64/64/2",
-        "name": "이순신",
-        "birthday": "600406",
-        "gender": "남자",
-        "job": "장군"
-      },{
-        "id": 3,
-        "image": "https://placeimg.com/64/64/3",
-        "name": "이황",
-        "birthday": "550831",
-        "gender": "남자",
-        "job": "교수"
+  connection.query(
+    "SELECT * FROM CUSTOMER",
+      (err, rows, fields) => {
+        res.send(rows);
       }
-    ]);
+  )
 })
 
 app.listen(port, () => {
